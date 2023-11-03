@@ -6,8 +6,11 @@ public class Main {
         table.putNode(2, "str11");
         table.putNode(2, "str14");
         table.putNode(3, "str3");
-        table.putNode(4, "str3");
+        table.putNode(4, "str15");
         System.out.println(table.get(2));
+        System.out.println(table.get(4));
         System.out.println(table.get(6));
+        System.out.println("\n");
+        table.lpt();
     }
 }

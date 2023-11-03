@@ -7,7 +7,9 @@ public class HashTable<K, V> {
         private final K key;
         private V value;
         private final int hash;
-        private Node<K, V> nodeNext;
+        private Node<K, V> head;
+        private Node<K, V> node;
+        private Node<K, V> tail;
 
         public Node(K key, V value) {
             this.key = key;
@@ -40,13 +42,13 @@ public class HashTable<K, V> {
             size ++;
             return;
         }
-        for (Node<K, V> i = nodes[index]; i != null ; i = i.nodeNext) {
+        for (Node<K, V> i = nodes[index]; i != null ; i = i.node) {
             if (i.key == key) {
                 i.value = value;
                 return;
             }
-            if (i.nodeNext == null) {
-                i.nodeNext = node;
+            if (i.node == null) {
+                i.node = node;
                 size ++;
                 return;
             }
@@ -56,7 +58,7 @@ public class HashTable<K, V> {
     public V get(K key) {
         for (Node<K, V> n: nodes) {
             if (n != null) {
-                for (Node<K, V> i = n; i != null ; i = i.nodeNext) {
+                for (Node<K, V> i = n; i != null ; i = i.node) {
                     if (i.key == key) {
                         return i.value;
                     }
@@ -64,5 +66,25 @@ public class HashTable<K, V> {
             }
         }
         return  null;
+    }
+
+    //public void delNode(K key, V value) {
+    //   Node<K, V> node = new Node<>(key, value);
+    //    node.previous
+    //    int index = node.getHash() % capacity;
+    //    if (nodes[index] == null) {
+    //        nodes[index] = node;
+    //        size ++;
+    //        return;
+    //    }
+
+    public void lpt() {
+        for (Node<K, V> n: nodes) {
+            if (n != null) {
+                for (Node<K, V> i = n; i != null ; i = i.node) {
+                        System.out.println(i.key + "  " + i.value);
+                }
+            }
+        }
     }
 }
